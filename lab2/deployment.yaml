@@ -17,8 +17,8 @@ spec:
           image: ifilyaninitmo/itdt-contained-frontend:master
           env:
             - name: REACT_APP_USERNAME
-              value: "YourUsername"
+              value: "Andrey"
             - name: REACT_APP_COMPANY_NAME
               value: "YourCompany"
           ports:
-            - containerPort: 80
+            - containerPort: 3000
