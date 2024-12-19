@@ -93,6 +93,6 @@ kubectl logs pod/vault
 
 ![8](photoReport/8.png)
 
-Схема организации контейеров и сервисов:
+## Диаграмма
 
 ![8](diagram.png)
