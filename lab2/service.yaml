@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+spec:
+  selector:
+    app: frontend  # Селектор для выбора подов, к которым будет направляться трафик
+  ports:
+    - protocol: TCP
+      port: 3000  # Порт, на котором будет доступен сервис
+      targetPort: 3000  # Порт, на котором контейнер слушает
+      nodePort: 30080  # Порт на узле Minikube для доступа
+  type: NodePort
