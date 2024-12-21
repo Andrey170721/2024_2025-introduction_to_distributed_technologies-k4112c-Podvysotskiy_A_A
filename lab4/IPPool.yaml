@@ -3,13 +3,17 @@ kind: IPPool
 metadata:
   name: ippool-zone1
 spec:
-  cidr: 10.0.1.0/24
+  cidr: 192.168.1.0/24
   nodeSelector: location == 'us-east'
+  ipipMode: Always
+  natOutgoing: true
 ---
 apiVersion: crd.projectcalico.org/v1
 kind: IPPool
 metadata:
   name: ippool-zone2
 spec:
-  cidr: 10.0.2.0/24
+  cidr: 192.168.2.0/24
   nodeSelector: location == 'us-west'
+  ipipMode: Always
+  natOutgoing: true

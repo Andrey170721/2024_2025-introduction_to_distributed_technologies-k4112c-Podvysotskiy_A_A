@@ -1,3 +1,13 @@
+University: [ITMO University](https://itmo.ru/ru/)
+Faculty: [FICT](https://fict.itmo.ru)
+Course: [Introduction to distributed technologies](https://github.com/itmo-ict-faculty/introduction-to-distributed-technologies)
+Year: 2023/2024
+Group: K4112c
+Author: Podvysotskiy Andrey Anatolievich
+Lab: Lab3
+Date of create: 10.09.2024
+Date of finished: 19.09.2024
+
 # Отчет по лабораторной работе №3
 
 ## Ход работы
