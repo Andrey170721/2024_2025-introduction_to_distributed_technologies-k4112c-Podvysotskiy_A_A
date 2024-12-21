@@ -17,7 +17,7 @@ Date of finished: 19.09.2024
 Запустим Minikube с Calico и двумя нодами
 
 ```bash
-minikube start --cni=calico --nodes=2 -p multinode-demo
+minikube start --network-plugin=cni --cni=calico --nodes=2 -p multinode-demo
 ```
 
 ![1](photoReport/1.png)
@@ -29,6 +29,15 @@ kubectl get nodes
 ```
 
 ![2](photoReport/2.png)
+
+
+Проверbv установку Calico в кластере
+
+```bash
+kubectl get pods -l k8s-app=calico-node -A
+```
+
+![1-extra](photoReport/1-extra.png)
 
 ### Шаг 2
 
@@ -46,25 +55,25 @@ kubectl label nodes multinode-demo-m02 location=us-west
 Теперь разработаем манифест IPPool для Calico, который будет назначать IP-адреса подам на основе меток нод.
 
 ```yaml
-apiVersion: crd.projectcalico.org/v1
+apiVersion: projectcalico.org/v3
 kind: IPPool
 metadata:
   name: ippool-zone1
 spec:
-  cidr: 192.168.1.0/24
-  nodeSelector: location == 'us-east'
+  cidr: 192.168.0.0/24
   ipipMode: Always
   natOutgoing: true
+  nodeSelector: zone == "ru-east"
 ---
-apiVersion: crd.projectcalico.org/v1
+apiVersion: projectcalico.org/v3
 kind: IPPool
 metadata:
   name: ippool-zone2
 spec:
-  cidr: 192.168.2.0/24
-  nodeSelector: location == 'us-west'
+  cidr: 192.168.1.0/24
   ipipMode: Always
   natOutgoing: true
+  nodeSelector: zone == "ru-west"
 
 ```
 
@@ -75,6 +84,18 @@ kubectl apply -f ippool.yaml
 ```
 
 ![4](photoReport/4.png)
+
+Удалим дефолтный ippool
+
+![3-extra](photoReport/3-extra.png)
+
+Теперь проверим что пулы включились
+
+```bash
+calicoctl get ippool -o wide
+```
+
+![2-extra](photoReport/2-extra.png)
 
 ### Шаг 4
 
@@ -154,7 +175,11 @@ kubectl apply -f service.yaml
 
 Теперь проверим их работу
 
+```bash
+kubectl get pods -o wide
+```
 
+![4-extra](photoReport/4-extra.png)
 
 ## Схема
 

@@ -12,20 +12,6 @@ spec:
       labels:
         app: frontend
     spec:
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
-                  - key: location
-                    operator: In
-                    values:
-                      - us-east
-              - matchExpressions:
-                  - key: location
-                    operator: In
-                    values:
-                      - us-west
       containers:
         - name: frontend
           image: ifilyaninitmo/itdt-contained-frontend:master
